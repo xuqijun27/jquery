@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>登录页面</title>
+    <style>
+        .a {
+            display: none;
+        }
+        .b {
+            display: block;
+        }
+    </style>
+</head>
+
+<body style="text-align: center;">
+    <div class="b" id="loginForm">
+        <h2>用户登录</h2>
+        <form>
+            <label for="username">用户名:</label>
+            <input type="text" id="username" required><br /><br />
+            <label for="password">密&nbsp;&nbsp;&nbsp;码:</label>
+            <input type="password" id="password" required><br /><br />
+            <button type="submit">登录</button>
+            <a href="#" onclick="toggleForm()">注册</a>
+        </form>
+    </div>
+    <div class="a" id="registerForm">
+        <h2>注册</h2>
+        <form style="align-items: center;">
+            <label for="username">用户名:</label>
+            <input type="text" id="username" name="username" required><br /><br />
+            <label for="email">邮&nbsp;&nbsp;&nbsp;箱:</label>
+            <input type="email" id="email" name="email" required><br /><br />
+            <label for="password">密&nbsp;&nbsp;&nbsp;码:</label>
+            <input type="password" id="password" name="password" required><br /><br />
+            <label for="cpassword">请再次输入密码:</label>
+            <input type="password" id="cpassword" name="cpassword" required><br /><br />
+            <button type="submit">注册</button>
+            <a href="#" onclick="toggleForm()">登录</a>
+        </form>
+    </div>
+    <script>
+        function toggleForm() {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+
+            if (loginForm.classList.contains('b')) {
+                loginForm.classList.remove('b');
+                loginForm.classList.add('a');
+                registerForm.classList.remove('a');
+                registerForm.classList.add('b');
+            } else {
+                registerForm.classList.remove('b');
+                registerForm.classList.add('a');
+                loginForm.classList.remove('a');
+                loginForm.classList.add('b');
+            }
+        }
+    </script>
+</body>
+
+</html>
