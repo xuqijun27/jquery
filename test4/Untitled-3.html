@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<style>
+		html,body{
+			width: 100%;
+			height: 100%;
+			background-color: dodgerblue;
+		}
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		.a{
+			height: 7%;
+			background-color: greenyellow;
+			font-size: 60px;
+			color: aliceblue;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+		}
+		.b{
+			width: 86px;
+			height: 86px;
+			border-radius: 50%;
+			display: block;
+			right: 20px;
+			font-size: 35px;
+			background-color: aqua;
+			position: absolute;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: black;
+		}
+		.b:hover .c{
+			display: block;
+		}
+		.c{
+			width: 80px;
+			display: none;
+			background-color: #ccc;
+			position: absolute;
+			top: 80px;
+			right: 0;
+			font-size: 20px !important;
+			padding: 10px;
+		}
+		.d{
+			background-color: cadetblue;
+			height: 93%;
+			display: flex;
+		}
+		.menu{
+			background-color: beige;
+			flex: 3;
+		}
+		.contnet{
+			background-color: coral;
+			flex: 21;
+			}
+	</style>
+	<body>
+		<div class="a">
+			学生成绩管理系统
+			<div class="b">
+				学生
+			<div class="c">
+				<p>个人信息</p>
+				<p>修改密码</p>
+				<p>退出登录</p>
+			</div>
+			</div>
+		</div>
+		<div class="d">
+			<div class="menu">
+			<ul>
+			    <li>第1章JavaScript简介</li>
+			    <li>第2章JavaScript基础</li>
+			    <li>第3章css基础
+			        <ul>
+			            <li>第3.1节css的概念</li>
+			            <li>第3.2节使用css控制页面
+			                <ul>
+			                    <li>第3.2.1行内样式</li>
+			                    <li>第3.2.2内嵌式</li>
+			                </ul>
+			            </li>
+			            <li>第3.3节css选择器</li>
+			        </ul>
+			    </li>
+			    <li>第4章css进阶
+			        <ul>
+			            <li>第4.1节div标记与span标记</li>
+			            <li>第4.2节盒子模型</li>
+			            <li>第4.3节元素定位
+			                <ul>
+			                    <li>4.3.1 float定位</li>
+			                    <li>4.3.2 position定位</li>
+			                    <li>4.3.3 z-index空间位置</li>
+			                </ul>
+			            </li>
+			        </ul>
+			    </li>
+		    </ul>
+		</div>
+			<div class="contnet">2</div>
+			
+		</div>
+	</body>
+</html>
+<script src="Untitled-1.js"></script>
+<script>
+    $(function(){
+        $("li:has(ul)").click(function(e){
+            if(this == e.target){
+                if($(this).children().is(":hidden")){
+                    $(this).css("list-style-image", "url(minus.gif)")
+                    .children().show();
+                } else {
+                    $(this).css("list-style-image", "url(plus.gif)")
+                    .children().hide();
+                }
+            }
+            return false;
+        }).css("cursor", "pointer").click();
+        $("li:not(:has(ul))").css({
+            "cursor": "default",
+            "list-style-image": "none"
+        });
+    });
+</script>
