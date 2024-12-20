@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css"> 
+    <title>个人信息</title>
+    <style>
+        body {
+            background-image: url(1e.jpg);
+        }
+        .header {
+            background-color: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 24px;
+            position: relative;
+        }
+        .top-left-button {
+            position: absolute; 
+            top: 10px; 
+            left: 10px; 
+        }
+        .circle-image {
+            position: absolute; 
+            top: 10px; 
+            right: 10px;
+            width: 50px; 
+            height: 50px; 
+            border-radius: 50%; 
+            overflow: hidden; 
+            border: 2px solid white; 
+        }
+        .circle-image img {
+            width: 100%; 
+            height: auto; 
+        }
+        .container {
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        table th, table td {
+            text-align: center;
+        }
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+        .form-control {
+            margin: 5px 0;
+        }
+        .feedback {
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="主页.html">
+            <button class="btn btn-secondary top-left-button">返回</button>
+        </a>
+        我的信息
+        <div class="circle-image">
+            <img src="2a.jpg" alt="用户头像"> 
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>个人信息</h2>
+        <table class="table" id="info-table">
+            <thead>
+                <tr>
+                    <th>项目</th>
+                    <th>内容</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>姓名</td>
+                    <td id="name">张三</td>
+                </tr>
+                <tr>
+                    <td>学号</td>
+                    <td id="id">123456</td>
+                </tr>
+                <tr>
+                    <td>班级</td>
+                    <td id="class">一年级一班</td>
+                </tr>
+                <tr>
+                    <td>电话</td>
+                    <td id="phone">123-456-7890</td>
+                </tr>
+                <tr>
+                    <td>邮箱</td>
+                    <td id="email">zhangsan@example.com</td>
+                </tr>
+                <tr>
+                    <td>地址</td>
+                    <td id="address">北京市海淀区</td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-primary" id="edit-button"><i class="bi bi-pencil"></i> 编辑</button>
+        <div class="feedback alert alert-info"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var editButton = $('#edit-button');
+
+            editButton.click(function () {
+                var buttonText = editButton.text().trim();
+                if (buttonText === '编辑') {
+                    $('#info-table td').each(function () {
+                        var currentText = $(this).text();
+                        $(this).html('<input type="text" class="form-control" value="' + currentText + '">');
+                    });
+                    editButton.text('保存');
+                } else {
+                    var allInputsFilled = true;
+                    $('#info-table td input').each(function () {
+                        if ($(this).val().trim() === "") {
+                            allInputsFilled = false;
+                            return false; 
+                        }
+                    });
+
+                    if (allInputsFilled) {
+                        $('#info-table td input').each(function () {
+                            var newValue = $(this).val();
+                            $(this).parent().text(newValue); 
+                        });
+                        editButton.text('编辑');
+                        $('.feedback').text("信息已成功保存！").show();
+                    } else {
+                        $('.feedback').text("请确保所有字段均已填写！").show(); 
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

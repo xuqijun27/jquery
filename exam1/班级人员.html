@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>班级信息</title>
+    <style>
+        body {
+            background-image: url(1e.jpg);
+        }
+        .header {
+            background-color: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 24px;
+        }
+        .container {
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .top-left-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10; 
+        }
+    </style>
+</head>
+<body>
+<div class="header">班级信息</div>
+<a href="主页.html"><button class="btn btn-secondary top-left-button">返回</button></a>
+<div class="container">
+    <h2>班级人员信息</h2>
+    <table class="table">
+        <tr>
+            <th>姓名</th>
+            <th>学号</th>
+            <th>年级</th>
+            <th>班级</th>
+            <th>联系电话</th>
+            <th>操作</th>
+        </tr>
+
+        <tbody id="studentData"></tbody>
+    </table>
+</div>
+<div class="modal" id="editModal">
+    <div class="modal-content">
+        <span class="close" style="cursor:pointer; float:right;">&times;</span>
+        <h2>修改学生信息</h2>
+        <form id="editForm">
+            <label for="studentName">姓名:</label>
+            <input type="text" id="studentName" required><br>
+            <label for="studentId">学号:</label>
+            <input type="text" id="studentId" required><br>
+            <label for="studentGrade">年级:</label>
+            <input type="text" id="studentGrade" required><br>
+            <label for="studentClass">班级:</label>
+            <input type="text" id="studentClass" required><br>
+            <label for="studentPhone">联系电话:</label>
+            <input type="text" id="studentPhone" required><br>
+            <button type="submit" class="btn btn-primary">保存</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script>
+    let currentRow;
+
+    $(document).ready(function() {
+        let students = [];
+        for (let i = 1; i <= 14; i++) {
+            students.push({
+                name: `学生${i}`,
+                id: `20230${i}`,
+                grade: '一年级',
+                class: `班级${Math.ceil(i / 20)}`,
+                phone: `123-4567-89${String(i).padStart(2, '0')}`
+            });
+        }
+
+        const studentRows = students.map(student => `
+            <tr>
+                <td>${student.name}</td>
+                <td>${student.id}</td>
+                <td>${student.grade}</td>
+                <td>${student.class}</td>
+                <td>${student.phone}</td>
+                <td>
+                    <button class="btn btn-primary btn-edit" onclick="editStudent('${student.name}', '${student.id}', '${student.grade}', '${student.class}', '${student.phone}')"><i class="fas fa-edit"></i> 修改</button>
+                    <button class="btn btn-danger btn-delete" onclick="deleteStudent(this)"><i class="fas fa-trash-alt"></i> 删除</button>
+                </td>
+            </tr>
+        `).join('');
+
+        $('#studentData').html(studentRows);
+    });
+
+    function editStudent(name, id, grade, className, phone) {
+        $('#studentName').val(name);
+        $('#studentId').val(id);
+        $('#studentGrade').val(grade);
+        $('#studentClass').val(className);
+        $('#studentPhone').val(phone);
+        $('#editModal').css("display", "block");
+        currentRow = $(event.target).closest('tr'); 
+    }
+
+    $(document).on('click', '.close', function() {
+        $('#editModal').css("display", "none");
+    });
+
+    $('#editForm').submit(function(event) {
+        event.preventDefault();
+        const updatedStudent = {
+            name: $('#studentName').val(),
+            id: $('#studentId').val(),
+            grade: $('#studentGrade').val(),
+            class: $('#studentClass').val(),
+            phone: $('#studentPhone').val()
+        };
+        currentRow.find('td').eq(0).text(updatedStudent.name);
+        currentRow.find('td').eq(1).text(updatedStudent.id);
+        currentRow.find('td').eq(2).text(updatedStudent.grade);
+        currentRow.find('td').eq(3).text(updatedStudent.class);
+        currentRow.find('td').eq(4).text(updatedStudent.phone);
+
+        $('#editModal').css("display", "none");
+    });
+
+    function deleteStudent(btn) {
+        if (confirm("确定要删除该学生吗？")) {
+            $(btn).closest('tr').remove();
+        }
+    }
+</script>
+
+</body>
+</html>

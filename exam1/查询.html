@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title></title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url(1e.jpg);
+            position: relative;
+        }
+        .search-container {
+            text-align: center;
+        }
+        .search-box {
+            width: 300px;
+            margin-bottom: 10px;
+        }
+        .top-left-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<a href="主页.html"><button class="btn btn-secondary top-left-button">返回</button></a>
+
+<div class="search-container">
+    <h2>学生查询</h2>
+    <input type="text" class="form-control search-box" id="searchInput" placeholder="请输入学号或姓名">
+    <button class="btn btn-primary" id="searchButton">搜索</button>
+    <div id="searchResult" class="mt-3"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#searchButton").click(function() {
+            const query = $("#searchInput").val();
+            $("#searchResult").html(`<p>你搜索的内容是: <strong>${query}</strong></p>`);
+        });
+    });
+</script>
+
+</body>
+</html>

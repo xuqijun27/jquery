@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>学生成绩管理系统</title>
+    <style>
+        body {
+            display: flex;
+            width: 100%; 
+            margin: 0; 
+        }
+     .sidebar {
+            width: 250px;
+            background-color: #f8faf9;
+            padding-top: 20px;
+        }
+     .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            background-image: url(3a.jpg);
+            display: block;
+        }
+     .sidebar a:hover {
+            background-image: url(2b.webp);
+        }
+     .content {
+            flex: 1;
+            padding: 20px;
+            background-image: url(1c.jpeg);
+            display: flex;
+
+        }
+     .header {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+     .button-group {
+            display: flex;
+            flex-wrap: wrap; /* 允许换行 */
+            justify-content: space-around; /* 均匀分布且环绕排列 */
+            align-items: center;
+        }
+     .btn-custom {
+            width: 100%;
+            height: 100%; 
+            margin: 25px 0; 
+            padding: 183px; /* 进一步增加内边距使按钮更大 */
+            font-size: 20px; /* 增大字体大小 */
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px; /* 增大圆角半径 */
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 添加阴影效果，使按钮更立体 */
+        }
+     .btn-custom:hover {
+            background-color: #0056b3;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* 悬停时加深阴影效果 */
+        }
+     .btn-custom i {
+            margin-right: 15px; /* 适当增加图标和文字之间的间距 */
+            font-size: 24px; /* 增大图标大小 */
+        }
+        .profile-pic {
+             width: 100px; /* 调整为合适的宽度 */
+             height: 100px; /* 调整为合适的高度 */
+             border-radius: 50%; /* 圆形 */
+             display: block; /* 在块级上下文中显示 */
+             margin: 0 auto; /* 中心对齐 */
+            }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h3><img src="2a.jpg" alt="个人照片" class="profile-pic" /></h3>
+        <a href="个人信息.html">我的信息</a>
+        <a href="班级人员.html">班级人员信息</a>
+        <a href="查询.html">成绩查询</a>
+        <a href="学习中心.html">学习中心</a>
+    </div>
+
+    <div class="content">
+        <div class="header">学生成绩管理系统</div>
+        <div class="button-group">
+            <a href="mid-term.html"><button class="btn btn-custom"><i class="fas fa-file-alt"></i> 期中成绩表</button></a>
+            <a href="final-term.html"><button class="btn btn-custom"><i class="fas fa-file-alt"></i> 期末成绩表</button></a>
+            <a href="search-result.html"><button class="btn btn-custom"><i class="fas fa-search"></i> 成绩查询表</button></a>
+            <a href="analysis.html"><button class="btn btn-custom"><i class="fas fa-chart-bar"></i> 成绩分析表</button></a>
+            <a href="student-info.html"><button class="btn btn-custom"><i class="fas fa-user"></i> 学生信息表</button></a>
+            <a href="instructions.html"><button class="btn btn-custom"><i class="fas fa-question-circle"></i> 使用说明</button></a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.btn-custom').click(function () {
+                $(this).css('background-color', '#0056b3');
+                setTimeout(function () {
+                    $(this).css('background-color', '#007bff');
+                }.bind(this), 500);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
